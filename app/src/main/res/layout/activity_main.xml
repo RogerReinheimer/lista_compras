@@ -2,139 +2,122 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#DFEBF6"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
     tools:context=".MainActivity">
 
-    <!-- logo -->
+    <!-- HEADER -->
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingTop="48dp">
+        android:paddingTop="32dp"
+        android:paddingBottom="24dp">
 
         <ImageView
             android:id="@+id/imgLogo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/img_logo"
-            app:tint="#768A96"/>
+            app:tint="#64748B"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Minha Lista de Compras"
             android:textColor="#29353C"
-            android:textSize="26sp"
-            android:layout_marginTop="24dp"
+            android:textSize="22sp"
+            android:layout_marginTop="16dp"
             android:textStyle="bold" />
-
     </LinearLayout>
 
-    <!-- botoes -->
+    <!-- CONTEÚDO -->
     <LinearLayout
         android:id="@+id/containerOpcoes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
-        android:layout_marginTop="24dp"
         android:orientation="vertical"
         android:paddingHorizontal="24dp">
 
-        <!-- botao das listas -->
+        <!-- BOTÃO PRINCIPAL -->
         <LinearLayout
             android:id="@+id/btnVerListas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/fundo_card"
+            android:background="@drawable/card_principal"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:elevation="2dp"
-            android:padding="16dp">
+            android:padding="18dp"
+            android:layout_marginBottom="24dp">
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginEnd="16dp"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginEnd="18dp"
                 android:src="@drawable/ic_lista"
-                app:tint="#768A96"/>
+                app:tint="#FFFFFF"/>
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ver Listas"
-                    android:textColor="#29353C"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Visualize suas listas"
-                    android:textColor="#768A96"
-                    android:textSize="14sp" />
-            </LinearLayout>
+                android:text="Ver Listas"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- botao das categorias -->
+        <!-- Categoria -->
         <LinearLayout
             android:id="@+id/btnCategorias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/fundo_card"
+            android:background="@drawable/card_secundario"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:elevation="2dp"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
 
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_pasta"
-                app:tint="#768A96"/>
+                app:tint="#475569"/>
 
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Categorias"
-                    android:textColor="#29353C"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#29353C" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Explore categorias de produtos"
-                    android:textColor="#768A96"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textColor="#64748B" />
             </LinearLayout>
         </LinearLayout>
 
-        <!-- botao dos produtos salvos -->
+        <!-- Salvos -->
         <LinearLayout
             android:id="@+id/btnProdutosSalvos"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/fundo_card"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_secundario"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:elevation="2dp"
             android:padding="16dp">
 
             <ImageView
@@ -142,39 +125,40 @@
                 android:layout_height="32dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_caixa"
-                app:tint="#768A96"/>
+                app:tint="#475569"/>
 
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Produtos Salvos"
-                    android:textColor="#29353C"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#29353C" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Seus favoritos em um lugar"
-                    android:textColor="#768A96"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textColor="#64748B" />
             </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
-    <!-- rodape -->
+    <!-- RODAPÉ -->
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="#AAC7D8"
-        android:elevation="6dp"
+        android:background="#FFFFFF"
+        android:elevation="10dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingHorizontal="24dp">
@@ -184,37 +168,32 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_weight="1"
-            android:contentDescription="Home"
             android:src="@drawable/ic_home"
-            app:tint="#FFFFFF" />
+            app:tint="#29353C"/>
 
         <ImageView
             android:id="@+id/iconListas"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_weight="1"
-            android:contentDescription="Listas"
             android:src="@drawable/ic_lista"
-            app:tint="#FFFFFF" />
+            app:tint="#94A3B8"/>
 
         <ImageView
             android:id="@+id/iconCategorias"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_weight="1"
-            android:contentDescription="Categorias"
             android:src="@drawable/ic_pasta"
-            app:tint="#FFFFFF" />
+            app:tint="#94A3B8"/>
 
         <ImageView
             android:id="@+id/iconProdutos"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_weight="1"
-            android:contentDescription="Produtos"
             android:src="@drawable/ic_caixa"
-            app:tint="#FFFFFF" />
-
+            app:tint="#94A3B8"/>
     </LinearLayout>
 
 </RelativeLayout>
