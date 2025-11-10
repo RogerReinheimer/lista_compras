@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ListaCompras">
         <activity
+            android:name=".card_produto_lista"
+            android:exported="false" />
+        <activity
             android:name=".card_lista"
             android:exported="false" />
         <activity

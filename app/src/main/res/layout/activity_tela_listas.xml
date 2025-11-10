@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DFEBF6"
+    tools:context=".tela_listas">
+
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:text="Minhas Listas de Compras"
+        android:textColor="#29353C"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txtTitulo"
+        android:paddingHorizontal="16dp"
+        android:layout_above="@+id/footer">
+
+        <LinearLayout
+            android:id="@+id/containerListas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
+            <include
+                android:id="@+id/cardListaExemplo"
+                layout="@layout/activity_card_lista" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp">
+
+        <ImageView
+            android:id="@+id/iconHome"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            app:tint="#94A3B8"/>
+
+        <ImageView
+            android:id="@+id/iconListas"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_lista"
+            app:tint="#29353C"/>
+
+        <ImageView
+            android:id="@+id/iconCategorias"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_pasta"
+            app:tint="#94A3B8"/>
+
+        <ImageView
+            android:id="@+id/iconProdutos"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_caixa"
+            app:tint="#94A3B8"/>
+
+    </LinearLayout>
+</RelativeLayout>
