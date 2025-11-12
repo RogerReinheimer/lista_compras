@@ -12,10 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ListaCompras">
         <activity
-            android:name=".card_produto_lista"
+            android:name=".NovaLista"
             android:exported="false" />
         <activity
-            android:name=".card_lista"
+            android:name=".EditarLista"
+            android:exported="false" />
+        <activity
+            android:name=".TelaListas"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

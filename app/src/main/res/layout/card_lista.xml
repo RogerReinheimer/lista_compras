@@ -2,12 +2,17 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardListaMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/main"
     card_view:cardCornerRadius="12dp"
-    card_view:cardElevation="6dp"
-    android:foreground="?android:attr/selectableItemBackground">
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardElevation="4dp"
+    card_view:cardMaxElevation="4dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardPreventCornerOverlap="false"
+    android:outlineProvider="background"
+    android:clipToOutline="false">
 
     <LinearLayout
         android:id="@+id/rootCard"
@@ -62,23 +67,13 @@
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:orientation="vertical">
+            <!-- android:visibility="gone"> -->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerProdutos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"/>
+            <include
+                android:id="@+id/cardListaExemplo"
+                layout="@layout/card_produto_lista" />
 
-            <TextView
-                android:id="@+id/btnVerTudo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ver tudo →"
-                android:textColor="#2962FF"
-                android:textSize="14sp"
-                android:paddingTop="8dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -90,11 +85,11 @@
             android:layout_marginTop="10dp">
 
             <Button
-                android:id="@+id/btnEncerrar"
+                android:id="@+id/btnExcluir"
                 style="@android:style/Widget.Material.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Encerrar lista"
+                android:text="Excluir lista"
                 android:textAllCaps="false"
                 android:textColor="#E53935"
                 android:paddingStart="8dp"
@@ -107,7 +102,6 @@
                 android:layout_height="wrap_content"
                 android:text="Editar"
                 android:textAllCaps="false"
-                android:layout_marginStart="12dp"
                 android:textColor="#2962FF"/>
 
         </LinearLayout>
