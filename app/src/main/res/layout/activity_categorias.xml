@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#DFEBF6">
 
-    <!-- HEADER -->
     <TextView
         android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
@@ -18,16 +17,14 @@
         android:layout_marginTop="32dp"
         android:layout_centerHorizontal="true" />
 
-    <!-- LISTA DE CATEGORIAS -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCategorias"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/txtTitulo"
-        android:layout_above="@id/footer"
+        android:layout_above="@id/btnAdicionarCategoria"
         android:padding="16dp"/>
 
-    <!-- BOTÃO FLUTUANTE -->
     <ImageView
         android:id="@+id/btnAdicionarCategoria"
         android:layout_width="56dp"
@@ -36,11 +33,12 @@
         android:background="@drawable/card_secundario"
         android:padding="12dp"
         android:layout_alignParentRight="true"
-        android:layout_margin="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_above="@id/footer"
         android:elevation="8dp" />
 
-    <!-- RODAPÉ -->
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"

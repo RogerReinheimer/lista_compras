@@ -5,6 +5,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatButton
 import com.example.listacompras.R
 import com.google.firebase.firestore.FirebaseFirestore
@@ -22,6 +23,7 @@ class EditarCategoria : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(R.layout.activity_editar_categoria)
 
         edtNome = findViewById(R.id.edtNomeCategoriaEditar)
