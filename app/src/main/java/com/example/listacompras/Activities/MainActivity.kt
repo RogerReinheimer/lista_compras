@@ -1,13 +1,14 @@
-package com.example.listacompras
+package com.example.listacompras.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import android.widget.LinearLayout
-import android.widget.ImageView
+import com.example.listacompras.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,19 +34,21 @@ class MainActivity : AppCompatActivity() {
 
 
         // CARDS DA TELA
+        /*
         // tela de lista
         btnVerListas.setOnClickListener {
             val intent = Intent(this, TelaListas::class.java)
             startActivity(intent)
         }
+         */
 
-        /*
         // tela das categorias
         btnCategorias.setOnClickListener {
-            val intent = Intent(this, CategoriasActivity::class.java)
+            val intent = Intent(this, Categorias::class.java)
             startActivity(intent)
         }
 
+        /*
         // tela
         btnProdutosSalvos.setOnClickListener {
             val intent = Intent(this, ProdutosSalvosActivity::class.java)
@@ -59,19 +62,22 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        /*
         // tela de listas
         iconListas.setOnClickListener {
             val intent = Intent(this, TelaListas::class.java)
             startActivity(intent)
         }
+        */
 
-        /*
+
         // tela de categorias
         iconCategorias.setOnClickListener {
-            val intent = Intent(this, CategoriasActivity::class.java)
+            val intent = Intent(this, Categorias::class.java)
             startActivity(intent)
         }
 
+        /*
         // tela de produtos
         iconProdutos.setOnClickListener {
             val intent = Intent(this, ProdutosSalvosActivity::class.java)

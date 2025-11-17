@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DFEBF6"
-    tools:context=".TelaListas">
+    android:background="#DFEBF6">
 
+    <!-- HEADER -->
     <TextView
         android:id="@+id/txtTitulo"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="24dp"
-        android:text="Minhas Listas de Compras"
-        android:textColor="#29353C"
+        android:text="Categorias"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#29353C"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true" />
 
-    <ScrollView
+    <!-- LISTA DE CATEGORIAS -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCategorias"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/txtTitulo"
-        android:paddingHorizontal="16dp"
-        android:layout_above="@+id/footer">
+        android:layout_above="@id/footer"
+        android:padding="16dp"/>
 
-        <LinearLayout
-            android:id="@+id/containerListas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="24dp">
+    <!-- BOTÃO FLUTUANTE -->
+    <ImageView
+        android:id="@+id/btnAdicionarCategoria"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_add"
+        android:background="@drawable/card_secundario"
+        android:padding="12dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:layout_above="@id/footer"
+        android:elevation="8dp" />
 
-            <include
-                android:id="@+id/includeCard"
-                layout="@layout/card_lista"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
-    </ScrollView>
-
+    <!-- RODAPÉ -->
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
-        android:elevation="6dp"
+        android:elevation="10dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingHorizontal="24dp">
@@ -59,7 +58,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_home"
-            app:tint="#94A3B8" />
+            app:tint="#94A3B8"/>
 
         <ImageView
             android:id="@+id/iconListas"
@@ -67,7 +66,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_lista"
-            app:tint="#29353C" />
+            app:tint="#94A3B8"/>
 
         <ImageView
             android:id="@+id/iconCategorias"
@@ -75,7 +74,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_pasta"
-            app:tint="#94A3B8" />
+            app:tint="#29353C" />
 
         <ImageView
             android:id="@+id/iconProdutos"
@@ -83,21 +82,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_caixa"
-            app:tint="#94A3B8" />
+            app:tint="#94A3B8"/>
     </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAddLista"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="80dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/ic_add"
-        app:backgroundTint="#94A3B8"
-        app:tint="@android:color/white"
-        app:maxImageSize="36dp"
-        android:elevation="10dp" />
 
 </RelativeLayout>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DFEBF6">
+
+    <!-- TÍTULO -->
+    <TextView
+        android:id="@+id/txtTituloEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Categoria"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#29353C"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+    <!-- CAMPO NOME -->
+    <LinearLayout
+        android:id="@+id/containerCampo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtTituloEditar"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="40dp">
+
+        <EditText
+            android:id="@+id/edtNomeCategoriaEditar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Nome da categoria"
+            android:background="@drawable/card_secundario"
+            android:padding="16dp"
+            android:textColor="#29353C"
+            android:textColorHint="#64748B"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- BOTÕES SALVAR + CANCELAR -->
+    <LinearLayout
+        android:id="@+id/containerBotoesEditar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_above="@id/btnExcluirCategoria"
+        android:padding="24dp">
+
+        <!-- SALVAR -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSalvarEdicao"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Salvar"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:background="@drawable/card_principal"/>
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="0dp"/>
+
+        <!-- CANCELAR -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancelarEdicao"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Cancelar"
+            android:textStyle="bold"
+            android:textColor="#29353C"
+            android:background="@drawable/card_secundario"/>
+    </LinearLayout>
+
+    <!-- BOTÃO EXCLUIR -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnExcluirCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_above="@id/footer"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="Excluir categoria"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/card_excluir"/>
+
+    <!-- RODAPÉ -->
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp">
+
+        <ImageView
+            android:id="@+id/iconHome"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            app:tint="#94A3B8"/>
+
+        <ImageView
+            android:id="@+id/iconListas"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_lista"
+            app:tint="#94A3B8"/>
+
+        <ImageView
+            android:id="@+id/iconCategorias"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_pasta"
+            app:tint="#29353C" />
+
+        <ImageView
+            android:id="@+id/iconProdutos"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_caixa"
+            app:tint="#94A3B8"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

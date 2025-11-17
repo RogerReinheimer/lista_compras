@@ -12,6 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ListaCompras">
         <activity
+            android:name=".Activities.EditarCategoria"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CriarCategoria"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.Categorias"
+            android:exported="false" />
+        <activity
+            android:name=".ListaProdutos"
+            android:exported="false" />
+        <activity
+            android:name=".AdicionarProduto"
+            android:exported="false" />
+        <activity
+            android:name=".NovoProduto"
+            android:exported="false" />
+        <activity
+            android:name=".ProdutosSalvos"
+            android:exported="false" />
+        <activity
             android:name=".NovaLista"
             android:exported="false" />
         <activity
@@ -21,7 +42,7 @@
             android:name=".TelaListas"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
