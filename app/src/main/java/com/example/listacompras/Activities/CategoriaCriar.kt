@@ -11,14 +11,14 @@ import com.example.listacompras.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class CriarCategoria : AppCompatActivity() {
+class CategoriaCriar : AppCompatActivity() {
 
     private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        setContentView(R.layout.activity_criar_categoria)
+        setContentView(R.layout.activity_categoria_criar)
 
         val edtNome = findViewById<EditText>(R.id.edtNomeCategoria)
         val btnSalvar = findViewById<AppCompatButton>(R.id.btnSalvar)
@@ -38,7 +38,7 @@ class CriarCategoria : AppCompatActivity() {
                 .add(categoria)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Categoria criada!", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, Categorias::class.java))
+                    startActivity(Intent(this, CategoriasSalvas::class.java))
                     finish()
                 }
                 .addOnFailureListener {

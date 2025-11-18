@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         val btnCategorias = findViewById<LinearLayout>(R.id.btnCategorias)
         val btnProdutosSalvos = findViewById<LinearLayout>(R.id.btnProdutosSalvos)
 
-        // Ícones do rodapé (se quiser interagir depois)
         val iconHome = findViewById<ImageView>(R.id.iconHome)
         val iconListas = findViewById<ImageView>(R.id.iconListas)
         val iconCategorias = findViewById<ImageView>(R.id.iconCategorias)
@@ -46,16 +45,14 @@ class MainActivity : AppCompatActivity() {
 
         // tela das categorias
         btnCategorias.setOnClickListener {
-            val intent = Intent(this, Categorias::class.java)
+            val intent = Intent(this, CategoriasSalvas::class.java)
             startActivity(intent)
         }
 
-        /*
-        // tela
         btnProdutosSalvos.setOnClickListener {
-            val intent = Intent(this, ProdutosSalvosActivity::class.java)
+            val intent = Intent(this, ProdutoSalvos::class.java)
             startActivity(intent)
-        } */
+        }
 
         //ICONES DO RODAPE
         //tela home
@@ -75,15 +72,13 @@ class MainActivity : AppCompatActivity() {
 
         // tela de categorias
         iconCategorias.setOnClickListener {
-            val intent = Intent(this, Categorias::class.java)
+            val intent = Intent(this, CategoriasSalvas::class.java)
             startActivity(intent)
         }
 
-        /*
-        // tela de produtos
-        iconProdutos.setOnClickListener {
-            val intent = Intent(this, ProdutosSalvosActivity::class.java)
+        btnProdutosSalvos.setOnClickListener {
+            val intent = Intent(this, ProdutoSalvos::class.java)
             startActivity(intent)
-        } */
+        }
     }
 }

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DFEBF6">
+
+    <!-- TÍTULO -->
+    <TextView
+        android:id="@+id/txtTituloEditarProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Produto"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#29353C"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+    <!-- CAMPOS -->
+    <LinearLayout
+        android:id="@+id/containerCamposProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtTituloEditarProduto"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="40dp">
+
+        <!-- NOME -->
+        <EditText
+            android:id="@+id/edtNomeProdutoEd"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Nome do produto"
+            android:background="@drawable/card_secundario"
+            android:padding="16dp"
+            android:textColor="#29353C"
+            android:textColorHint="#64748B"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="16dp" />
+
+        <!-- DESCRIÇÃO -->
+        <EditText
+            android:id="@+id/edtDescricaoProdutoEd"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Descrição do produto"
+            android:background="@drawable/card_secundario"
+            android:padding="16dp"
+            android:textColor="#29353C"
+            android:textColorHint="#64748B"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="16dp" />
+
+        <!-- QUANTIDADE -->
+        <EditText
+            android:id="@+id/edtQuantidadeProdutoEd"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Quantidade"
+            android:inputType="number"
+            android:background="@drawable/card_secundario"
+            android:padding="16dp"
+            android:textColor="#29353C"
+            android:textColorHint="#64748B"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="16dp" />
+
+        <!-- UNIDADE -->
+        <Spinner
+            android:id="@+id/spinnerUnidadeProdutoEd"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/card_secundario"
+            android:padding="16dp"
+            android:spinnerMode="dropdown" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="16dp" />
+
+        <!-- PREÇO -->
+        <EditText
+            android:id="@+id/edtPrecoProdutoEd"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="Preço"
+            android:inputType="numberDecimal"
+            android:background="@drawable/card_secundario"
+            android:padding="16dp"
+            android:textColor="#29353C"
+            android:textColorHint="#64748B"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="16dp" />
+
+        <!-- CATEGORIA -->
+        <Spinner
+            android:id="@+id/spinnerCategoriaProduto"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/card_secundario"
+            android:padding="16dp"
+            android:spinnerMode="dropdown" />
+
+    </LinearLayout>
+
+    <!-- BOTÕES SALVAR + CANCELAR -->
+    <LinearLayout
+        android:id="@+id/containerBotoesEditarProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_above="@id/btnExcluirProduto"
+        android:padding="24dp">
+
+        <!-- SALVAR -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSalvarEdicaoProduto"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Editar"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:background="@drawable/card_principal"/>
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="0dp"/>
+
+        <!-- CANCELAR -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancelarEdicaoProduto"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Cancelar"
+            android:textStyle="bold"
+            android:textColor="#29353C"
+            android:background="@drawable/card_secundario"/>
+    </LinearLayout>
+
+    <!-- BOTÃO EXCLUIR -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnExcluirProduto"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_above="@id/footer"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="Excluir produto"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/card_excluir"/>
+
+    <!-- RODAPÉ -->
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp">
+
+        <ImageView
+            android:id="@+id/iconHome"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            app:tint="#94A3B8"/>
+
+        <ImageView
+            android:id="@+id/iconListas"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_lista"
+            app:tint="#94A3B8"/>
+
+        <ImageView
+            android:id="@+id/iconCategorias"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_pasta"
+            app:tint="#94A3B8" />
+
+        <ImageView
+            android:id="@+id/iconProdutos"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_caixa"
+            app:tint="#29353C"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

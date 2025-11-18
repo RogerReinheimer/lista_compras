@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatButton
 import com.example.listacompras.R
 import com.google.firebase.firestore.FirebaseFirestore
 
-class EditarCategoria : AppCompatActivity() {
+class CategoriaEditar : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
 
@@ -24,7 +24,7 @@ class EditarCategoria : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        setContentView(R.layout.activity_editar_categoria)
+        setContentView(R.layout.activity_categoria_editar)
 
         edtNome = findViewById(R.id.edtNomeCategoriaEditar)
         btnSalvar = findViewById(R.id.btnSalvarEdicao)

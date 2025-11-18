@@ -12,7 +12,7 @@ import com.example.listacompras.Model.Categoria
 import com.example.listacompras.R
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Categorias : AppCompatActivity() {
+class CategoriasSalvas : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CategoriasAdapter
@@ -23,13 +23,13 @@ class Categorias : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        setContentView(R.layout.activity_categorias)
+        setContentView(R.layout.activity_categorias_salvas)
 
         recyclerView = findViewById(R.id.recyclerCategorias)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         adapter = CategoriasAdapter(listaCategorias) { categoria ->
-            val intent = Intent(this, EditarCategoria::class.java)
+            val intent = Intent(this, CategoriaEditar::class.java)
             intent.putExtra("id", categoria.id)
             intent.putExtra("nome", categoria.nome)
             startActivity(intent)
@@ -39,7 +39,7 @@ class Categorias : AppCompatActivity() {
 
         val btnAdd = findViewById<ImageView>(R.id.btnAdicionarCategoria)
         btnAdd.setOnClickListener {
-            startActivity(Intent(this, CriarCategoria::class.java))
+            startActivity(Intent(this, CategoriaCriar::class.java))
         }
 
         carregarCategorias()
