@@ -33,22 +33,19 @@ class MainActivity : AppCompatActivity() {
         val iconCategorias = findViewById<ImageView>(R.id.iconCategorias)
         val iconProdutos = findViewById<ImageView>(R.id.iconProdutos)
 
-
         // CARDS DA TELA
         /*
         // tela de lista
         btnVerListas.setOnClickListener {
             val intent = Intent(this, TelaListas::class.java)
             startActivity(intent)
-        }
-         */
-
+        }*/
         // tela das categorias
         btnCategorias.setOnClickListener {
             val intent = Intent(this, CategoriasSalvas::class.java)
             startActivity(intent)
         }
-
+        // tela dos produtos
         btnProdutosSalvos.setOnClickListener {
             val intent = Intent(this, ProdutoSalvos::class.java)
             startActivity(intent)
@@ -60,25 +57,24 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
         /*
         // tela de listas
         iconListas.setOnClickListener {
             val intent = Intent(this, TelaListas::class.java)
             startActivity(intent)
-        }
-        */
-
-
+        }*/
         // tela de categorias
         iconCategorias.setOnClickListener {
             val intent = Intent(this, CategoriasSalvas::class.java)
             startActivity(intent)
         }
 
-        btnProdutosSalvos.setOnClickListener {
+        // tela dos produtos
+        iconProdutos.setOnClickListener {
             val intent = Intent(this, ProdutoSalvos::class.java)
             startActivity(intent)
         }
-    }
-}
+    }// oncreate
+
+
+}//fim codigo

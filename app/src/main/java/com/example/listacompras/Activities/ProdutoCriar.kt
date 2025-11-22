@@ -1,5 +1,6 @@
 package com.example.listacompras.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +35,57 @@ class ProdutoCriar : AppCompatActivity() {
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(R.layout.activity_produto_criar)
+
+        val btnVerListas = findViewById<LinearLayout>(R.id.btnVerListas)
+        val btnCategorias = findViewById<LinearLayout>(R.id.btnCategorias)
+        val btnProdutosSalvos = findViewById<LinearLayout>(R.id.btnProdutosSalvos)
+
+        val iconHome = findViewById<ImageView>(R.id.iconHome)
+        val iconListas = findViewById<ImageView>(R.id.iconListas)
+        val iconCategorias = findViewById<ImageView>(R.id.iconCategorias)
+        val iconProdutos = findViewById<ImageView>(R.id.iconProdutos)
+
+        // CARDS DA TELA
+        /*
+        // tela de lista
+        btnVerListas.setOnClickListener {
+            val intent = Intent(this, TelaListas::class.java)
+            startActivity(intent)
+        }*/
+        // tela das categorias
+        btnCategorias.setOnClickListener {
+            val intent = Intent(this, CategoriasSalvas::class.java)
+            startActivity(intent)
+        }
+        // tela dos produtos
+        btnProdutosSalvos.setOnClickListener {
+            val intent = Intent(this, ProdutoSalvos::class.java)
+            startActivity(intent)
+        }
+
+        //ICONES DO RODAPE
+        //tela home
+        iconHome.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        /*
+        // tela de listas
+        iconListas.setOnClickListener {
+            val intent = Intent(this, TelaListas::class.java)
+            startActivity(intent)
+        }*/
+        // tela de categorias
+        iconCategorias.setOnClickListener {
+            val intent = Intent(this, CategoriasSalvas::class.java)
+            startActivity(intent)
+        }
+
+        // tela dos produtos
+        iconProdutos.setOnClickListener {
+            val intent = Intent(this, ProdutoSalvos::class.java)
+            startActivity(intent)
+        }
 
         // IDs dos componentes
         edtNome = findViewById(R.id.edtNome)
