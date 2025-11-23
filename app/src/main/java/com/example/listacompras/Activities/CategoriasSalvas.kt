@@ -3,7 +3,6 @@ package com.example.listacompras.Activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +35,7 @@ class CategoriasSalvas : AppCompatActivity() {
         iconProdutos = findViewById(R.id.iconProdutos)
 
         iconHome.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, TelaHome::class.java))
         }
 
         /*

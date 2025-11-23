@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ListaCompras">
         <activity
+            android:name=".Activities.ProdutosSelecionar"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ListaCriar"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ListasSalvas"
+            android:exported="false" />
+        <activity
             android:name=".Activities.ProdutoEditar"
             android:exported="false" />
         <activity
@@ -30,7 +39,7 @@
             android:name=".Activities.CategoriasSalvas"
             android:exported="false" />
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".Activities.TelaHome"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.listacompras.R
 
-class MainActivity : AppCompatActivity() {
+class TelaHome : AppCompatActivity() {
 
     private lateinit var btnVerListas: LinearLayout
     private lateinit var btnCategorias: LinearLayout
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_tela_home)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -43,11 +43,11 @@ class MainActivity : AppCompatActivity() {
         iconCategorias = findViewById(R.id.iconCategorias)
         iconProdutos = findViewById(R.id.iconProdutos)
 
-        /*
+
         btnVerListas.setOnClickListener {
-            startActivity(Intent(this, TelaListas::class.java))
+            startActivity(Intent(this, ListasSalvas::class.java))
         }
-        */
+
 
         btnCategorias.setOnClickListener {
             startActivity(Intent(this, CategoriasSalvas::class.java))
@@ -59,14 +59,14 @@ class MainActivity : AppCompatActivity() {
 
         //ICONES DO RODAPÉ
         iconHome.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, TelaHome::class.java))
         }
 
-        /*
+
         iconListas.setOnClickListener {
-            startActivity(Intent(this, TelaListas::class.java))
+            startActivity(Intent(this, ListasSalvas::class.java))
         }
-        */
+
 
         iconCategorias.setOnClickListener {
             startActivity(Intent(this, CategoriasSalvas::class.java))

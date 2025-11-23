@@ -47,7 +47,7 @@ class ProdutoEditar : AppCompatActivity() {
         iconProdutos = findViewById(R.id.iconProdutos)
 
         iconHome.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, TelaHome::class.java))
         }
 
         /*
