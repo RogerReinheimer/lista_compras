@@ -17,6 +17,11 @@ class CategoriaCriar : AppCompatActivity() {
 
     private val db = Firebase.firestore
 
+    private lateinit var iconHome: ImageView
+    private lateinit var iconListas: ImageView
+    private lateinit var iconCategorias: ImageView
+    private lateinit var iconProdutos: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -26,55 +31,27 @@ class CategoriaCriar : AppCompatActivity() {
         val btnSalvar = findViewById<AppCompatButton>(R.id.btnSalvar)
         val btnCancelar = findViewById<AppCompatButton>(R.id.btnCancelar)
 
-        val btnVerListas = findViewById<LinearLayout>(R.id.btnVerListas)
-        val btnCategorias = findViewById<LinearLayout>(R.id.btnCategorias)
-        val btnProdutosSalvos = findViewById<LinearLayout>(R.id.btnProdutosSalvos)
+        iconHome = findViewById(R.id.iconHome)
+        iconListas = findViewById(R.id.iconListas)
+        iconCategorias = findViewById(R.id.iconCategorias)
+        iconProdutos = findViewById(R.id.iconProdutos)
 
-        val iconHome = findViewById<ImageView>(R.id.iconHome)
-        val iconListas = findViewById<ImageView>(R.id.iconListas)
-        val iconCategorias = findViewById<ImageView>(R.id.iconCategorias)
-        val iconProdutos = findViewById<ImageView>(R.id.iconProdutos)
-
-        // CARDS DA TELA
-        /*
-        // tela de lista
-        btnVerListas.setOnClickListener {
-            val intent = Intent(this, TelaListas::class.java)
-            startActivity(intent)
-        }*/
-        // tela das categorias
-        btnCategorias.setOnClickListener {
-            val intent = Intent(this, CategoriasSalvas::class.java)
-            startActivity(intent)
-        }
-        // tela dos produtos
-        btnProdutosSalvos.setOnClickListener {
-            val intent = Intent(this, ProdutoSalvos::class.java)
-            startActivity(intent)
-        }
-
-        //ICONES DO RODAPE
-        //tela home
         iconHome.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-        /*
-        // tela de listas
-        iconListas.setOnClickListener {
-            val intent = Intent(this, TelaListas::class.java)
-            startActivity(intent)
-        }*/
-        // tela de categorias
-        iconCategorias.setOnClickListener {
-            val intent = Intent(this, CategoriasSalvas::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
-        // tela dos produtos
+        /*
+        iconListas.setOnClickListener {
+            startActivity(Intent(this, TelaListas::class.java))
+        }
+        */
+
+        iconCategorias.setOnClickListener {
+            startActivity(Intent(this, CategoriasSalvas::class.java))
+        }
+
         iconProdutos.setOnClickListener {
-            val intent = Intent(this, ProdutoSalvos::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ProdutoSalvos::class.java))
         }
 
         btnSalvar.setOnClickListener {

@@ -12,6 +12,16 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.listacompras.R
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var btnVerListas: LinearLayout
+    private lateinit var btnCategorias: LinearLayout
+    private lateinit var btnProdutosSalvos: LinearLayout
+
+    private lateinit var iconHome: ImageView
+    private lateinit var iconListas: ImageView
+    private lateinit var iconCategorias: ImageView
+    private lateinit var iconProdutos: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -24,57 +34,46 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val btnVerListas = findViewById<LinearLayout>(R.id.btnVerListas)
-        val btnCategorias = findViewById<LinearLayout>(R.id.btnCategorias)
-        val btnProdutosSalvos = findViewById<LinearLayout>(R.id.btnProdutosSalvos)
+        btnVerListas = findViewById(R.id.btnVerListas)
+        btnCategorias = findViewById(R.id.btnCategorias)
+        btnProdutosSalvos = findViewById(R.id.btnProdutosSalvos)
 
-        val iconHome = findViewById<ImageView>(R.id.iconHome)
-        val iconListas = findViewById<ImageView>(R.id.iconListas)
-        val iconCategorias = findViewById<ImageView>(R.id.iconCategorias)
-        val iconProdutos = findViewById<ImageView>(R.id.iconProdutos)
+        iconHome = findViewById(R.id.iconHome)
+        iconListas = findViewById(R.id.iconListas)
+        iconCategorias = findViewById(R.id.iconCategorias)
+        iconProdutos = findViewById(R.id.iconProdutos)
 
-        // CARDS DA TELA
         /*
-        // tela de lista
         btnVerListas.setOnClickListener {
-            val intent = Intent(this, TelaListas::class.java)
-            startActivity(intent)
-        }*/
-        // tela das categorias
+            startActivity(Intent(this, TelaListas::class.java))
+        }
+        */
+
         btnCategorias.setOnClickListener {
-            val intent = Intent(this, CategoriasSalvas::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, CategoriasSalvas::class.java))
         }
-        // tela dos produtos
+
         btnProdutosSalvos.setOnClickListener {
-            val intent = Intent(this, ProdutoSalvos::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ProdutoSalvos::class.java))
         }
 
-        //ICONES DO RODAPE
-        //tela home
+        //ICONES DO RODAPÉ
         iconHome.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, MainActivity::class.java))
         }
+
         /*
-        // tela de listas
         iconListas.setOnClickListener {
-            val intent = Intent(this, TelaListas::class.java)
-            startActivity(intent)
-        }*/
-        // tela de categorias
+            startActivity(Intent(this, TelaListas::class.java))
+        }
+        */
+
         iconCategorias.setOnClickListener {
-            val intent = Intent(this, CategoriasSalvas::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, CategoriasSalvas::class.java))
         }
 
-        // tela dos produtos
         iconProdutos.setOnClickListener {
-            val intent = Intent(this, ProdutoSalvos::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ProdutoSalvos::class.java))
         }
-    }// oncreate
-
-
-}//fim codigo
+    }
+}
