@@ -2,12 +2,14 @@ package com.example.listacompras.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.listacompras.Adapter.ProdutosListaAdapter
 import com.example.listacompras.Model.Produto
+import com.example.listacompras.R
 import com.example.listacompras.databinding.ActivityListaEditarBinding
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -15,6 +17,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 class ListaEditar : AppCompatActivity() {
 
     private lateinit var binding: ActivityListaEditarBinding
+    private lateinit var iconHome: ImageView
+    private lateinit var iconListas: ImageView
+    private lateinit var iconCategorias: ImageView
+    private lateinit var iconProdutos: ImageView
     private val db = FirebaseFirestore.getInstance()
 
     private var listaId: String = ""
@@ -36,6 +42,27 @@ class ListaEditar : AppCompatActivity() {
             Toast.makeText(this, "Erro ao carregar lista", Toast.LENGTH_SHORT).show()
             finish()
             return
+        }
+
+        iconHome = findViewById(R.id.iconHome)
+        iconListas = findViewById(R.id.iconListas)
+        iconCategorias = findViewById(R.id.iconCategorias)
+        iconProdutos = findViewById(R.id.iconProdutos)
+
+        iconHome.setOnClickListener {
+            startActivity(Intent(this, TelaHome::class.java))
+        }
+
+        iconListas.setOnClickListener {
+            startActivity(Intent(this, ListasSalvas::class.java))
+        }
+
+        iconCategorias.setOnClickListener {
+            startActivity(Intent(this, CategoriasSalvas::class.java))
+        }
+
+        iconProdutos.setOnClickListener {
+            startActivity(Intent(this, ProdutoSalvos::class.java))
         }
 
         configurarRecycler()
