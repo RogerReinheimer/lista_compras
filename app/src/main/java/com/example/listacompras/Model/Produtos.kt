@@ -5,15 +5,16 @@ import android.os.Parcelable
 
 data class Produto(
     val id: String = "",
-    val nome: String = "",
-    val descricao: String = "",
-    val quantidade: Double = 0.0,
-    val unidade: String = "",
-    val preco: Double = 0.0,
-    val categoriaId: String = "",
-    val categoriaNome: String = "",
+    var nome: String = "",
+    var descricao: String = "",
+    var quantidade: Double = 0.0,
+    var unidade: String = "",
+    var preco: Double = 0.0,
+    var categoriaId: String = "",
+    var categoriaNome: String = "",
     var selecionado: Boolean = false
 ) : Parcelable {
+
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
@@ -22,7 +23,8 @@ data class Produto(
         parcel.readString() ?: "",
         parcel.readDouble(),
         parcel.readString() ?: "",
-        parcel.readString() ?: ""
+        parcel.readString() ?: "",
+        parcel.readByte() != 0.toByte()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -34,6 +36,7 @@ data class Produto(
         parcel.writeDouble(preco)
         parcel.writeString(categoriaId)
         parcel.writeString(categoriaNome)
+        parcel.writeByte(if (selecionado) 1 else 0)
     }
 
     override fun describeContents(): Int = 0

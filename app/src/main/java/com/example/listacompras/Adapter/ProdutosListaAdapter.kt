@@ -17,16 +17,16 @@ class ProdutosListaAdapter(
 ) : RecyclerView.Adapter<ProdutosListaAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val nome: TextView = itemView.findViewById(R.id.txtNomeProdutoCard)
+        val descricao: TextView = itemView.findViewById(R.id.txtDescricaoProdutoCard)
 
-        val nome = itemView.findViewById<TextView>(R.id.txtNomeProdutoCard)
-        val descricao = itemView.findViewById<TextView>(R.id.txtDescricaoProdutoCard)
-        val preco = itemView.findViewById<TextView>(R.id.txtPrecoProdutoCard)
-        val quantidade = itemView.findViewById<TextView>(R.id.txtQuantidadeProdutoCard)
-        val unidade = itemView.findViewById<TextView>(R.id.txtUnidadeProdutoCard)
+        val txtPreco: TextView = itemView.findViewById(R.id.txtPrecoProdutoCard)
+        val txtQuantidade: TextView = itemView.findViewById(R.id.txtQuantidadeProdutoCard)
+        val txtUnidade: TextView = itemView.findViewById(R.id.txtUnidadeProdutoCard)
 
-        val btnRemover = itemView.findViewById<ImageView>(R.id.btnRemoverProdutoCard)
-        val btnExpandir = itemView.findViewById<ImageView>(R.id.btnExpandirProduto)
-        val container = itemView.findViewById<LinearLayout>(R.id.containerDetalhesProduto)
+        val btnRemover: ImageView = itemView.findViewById(R.id.btnRemoverProdutoCard)
+        val btnExpandir: ImageView = itemView.findViewById(R.id.btnExpandirProduto)
+        val container: LinearLayout = itemView.findViewById(R.id.containerDetalhesProduto)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,16 +38,16 @@ class ProdutosListaAdapter(
     override fun getItemCount() = produtos.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         val p = produtos[position]
 
         holder.nome.text = p.nome
         holder.descricao.text = "Descrição: ${p.descricao}"
-        holder.preco.text = "Preço: R$ ${"%.2f".format(p.preco)}"
-        holder.quantidade.text = "Quantidade: ${p.quantidade}"
-        holder.unidade.text = "Unidade: ${p.unidade}"
 
-        // EXPANDIR/COLAPSAR
+        holder.txtPreco.text = "Preço: R$ %.2f".format(p.preco)
+        holder.txtQuantidade.text = "Quantidade: ${p.quantidade}"
+        holder.txtUnidade.text = "Unidade: ${p.unidade}"
+
+        // EXPANDIR / COLAPSAR
         holder.btnExpandir.setOnClickListener {
             if (holder.container.visibility == View.GONE) {
                 holder.container.visibility = View.VISIBLE
@@ -68,3 +68,4 @@ class ProdutosListaAdapter(
         }
     }
 }
+

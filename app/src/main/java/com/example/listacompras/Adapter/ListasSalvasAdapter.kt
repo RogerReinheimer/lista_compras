@@ -17,7 +17,8 @@ import java.util.Locale
 
 class ListasSalvasAdapter(
     private val listas: ArrayList<Lista>,
-    private val onClick: (Lista) -> Unit
+    private val onClick: (Lista) -> Unit,
+    private val onEditarClick: (String) -> Unit
 ) : RecyclerView.Adapter<ListasSalvasAdapter.ListaViewHolder>() {
 
     private val db = FirebaseFirestore.getInstance()
@@ -30,6 +31,8 @@ class ListasSalvasAdapter(
         val txtTotalCarrinho: TextView = itemView.findViewById(R.id.txtTotalCarrinhoListaCard)
 
         val btnExpandir: ImageView = itemView.findViewById(R.id.btnExpandirLista)
+        val btnEditar: ImageView = itemView.findViewById(R.id.btnEditarLista)
+
         val containerProdutos: LinearLayout = itemView.findViewById(R.id.containerProdutosLista)
         val recyclerProdutos: RecyclerView = itemView.findViewById(R.id.recyclerProdutosDaLista)
     }
@@ -47,19 +50,21 @@ class ListasSalvasAdapter(
         holder.txtTotal.text = "Total: R$ %.2f".format(lista.total)
 
         lista.dataCriacao?.let {
-            holder.txtData.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(it)
+            holder.txtData.text =
+                SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(it)
         }
 
-        val expandida = estados[lista.id] ?: false
-        holder.containerProdutos.visibility = if (expandida) View.VISIBLE else View.GONE
+        val expanded = estados[lista.id] ?: false
+        holder.containerProdutos.visibility = if (expanded) View.VISIBLE else View.GONE
         holder.btnExpandir.setImageResource(
-            if (expandida) R.drawable.flecha_cima else R.drawable.flecha_baixo
+            if (expanded) R.drawable.flecha_cima else R.drawable.flecha_baixo
         )
 
         holder.recyclerProdutos.layoutManager =
             LinearLayoutManager(holder.itemView.context)
 
         holder.itemView.setOnClickListener { onClick(lista) }
+        holder.btnEditar.setOnClickListener { onEditarClick(lista.id) }
 
         holder.btnExpandir.setOnClickListener {
             val novoEstado = !(estados[lista.id] ?: false)
@@ -69,17 +74,19 @@ class ListasSalvasAdapter(
             if (novoEstado) carregarProdutos(lista.id, holder)
         }
 
-        if (expandida) carregarProdutos(lista.id, holder)
+        if (expanded) carregarProdutos(lista.id, holder)
     }
 
     override fun getItemCount() = listas.size
 
     private fun carregarProdutos(listaId: String, holder: ListaViewHolder) {
+
         db.collection("listas")
             .document(listaId)
             .collection("produtos")
-            .get()
-            .addOnSuccessListener { snap ->
+            .addSnapshotListener { snap, _ ->
+
+                if (snap == null) return@addSnapshotListener
 
                 val produtos = snap.map { doc ->
                     Produto(

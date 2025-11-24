@@ -21,14 +21,15 @@ class ListasSalvas : AppCompatActivity() {
     private lateinit var iconListas: ImageView
     private lateinit var iconCategorias: ImageView
     private lateinit var iconProdutos: ImageView
-    private val listas = ArrayList<Lista>()
 
+    private val listas = ArrayList<Lista>()
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listas_salvas)
+
         iconHome = findViewById(R.id.iconHome)
         iconListas = findViewById(R.id.iconListas)
         iconCategorias = findViewById(R.id.iconCategorias)
@@ -53,11 +54,21 @@ class ListasSalvas : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerListasSalvas)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = ListasSalvasAdapter(listas) { listaSelecionada ->
-            val intent = Intent(this, ListaCriar::class.java)
-            intent.putExtra("listaId", listaSelecionada.id)
-            startActivity(intent)
-        }
+        // CALLBACK ABRIR + EDITAR
+        adapter = ListasSalvasAdapter(
+            listas,
+            onClick = { listaSelecionada ->
+                val intent = Intent(this, ListaCriar::class.java)
+                intent.putExtra("listaId", listaSelecionada.id)
+                startActivity(intent)
+            },
+            onEditarClick = { listaId ->
+                val intent = Intent(this, ListaEditar::class.java)
+                intent.putExtra("listaId", listaId)
+                startActivity(intent)
+            }
+        )
+
         recyclerView.adapter = adapter
 
         carregarListas()
@@ -77,11 +88,9 @@ class ListasSalvas : AppCompatActivity() {
 
                 if (snap != null) {
                     for (doc in snap.documents) {
-
                         val lista = doc.toObject(Lista::class.java)
-
                         if (lista != null) {
-                            lista.id = doc.id  // importante para abrir depois
+                            lista.id = doc.id
                             listas.add(lista)
                         }
                     }
@@ -91,4 +100,3 @@ class ListasSalvas : AppCompatActivity() {
             }
     }
 }
-

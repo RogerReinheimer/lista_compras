@@ -62,7 +62,7 @@
 
         <!-- Botão editar (igual ao layout produto) -->
         <ImageView
-            android:id="@+id/btnEditarListaCard"
+            android:id="@+id/btnEditarLista"
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:src="@drawable/ic_editar"
