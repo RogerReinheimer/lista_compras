@@ -66,6 +66,12 @@ class ProdutosSelecionar : AppCompatActivity() {
 
         onBackPressedDispatcher.addCallback(this) { finish() }
 
+        // RECEBE IDs JÁ SELECIONADOS
+        val recebidos = intent.getStringArrayExtra("produtosAtuaisIds")
+        recebidos?.let {
+            selecionadosIds.addAll(it)
+        }
+
         carregarProdutos()
     }
 
@@ -95,6 +101,8 @@ class ProdutosSelecionar : AppCompatActivity() {
     private fun montarLista(produtos: List<Produto>) {
 
         listaItens.clear()
+        selecionadosObj.clear()
+
         var categoriaAtual = ""
 
         produtos.sortedBy { it.categoriaNome }.forEach { produto ->
@@ -105,6 +113,11 @@ class ProdutosSelecionar : AppCompatActivity() {
             }
 
             listaItens.add(ProdutoListItem.Item(produto))
+
+            // Recria a lista dos objetos selecionados
+            if (selecionadosIds.contains(produto.id)) {
+                selecionadosObj.add(produto)
+            }
         }
 
         adapter = SelecionarProdutosAdapter(

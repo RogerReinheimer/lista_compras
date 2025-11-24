@@ -75,6 +75,13 @@ class ListaCriar : AppCompatActivity() {
 
         findViewById<View>(R.id.btnAddProduto).setOnClickListener {
             val intent = Intent(this, ProdutosSelecionar::class.java)
+
+            // ENVIA IDs DOS PRODUTOS JÁ SELECIONADOS
+            intent.putExtra(
+                "produtosAtuaisIds",
+                produtosSelecionados.map { it.id }.toTypedArray()
+            )
+
             startActivityForResult(intent, REQUEST_SELECT)
         }
 
@@ -92,7 +99,9 @@ class ListaCriar : AppCompatActivity() {
                 data?.getParcelableArrayExtra("produtosSelecionados")?.map { it as Produto }
                     ?: emptyList()
 
+            produtosSelecionados.clear() // NÃO DUPLICA MAIS
             produtosSelecionados.addAll(recebidos)
+
             adapter.notifyDataSetChanged()
             atualizarTotal()
         }
