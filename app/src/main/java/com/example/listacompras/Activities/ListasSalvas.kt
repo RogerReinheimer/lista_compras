@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listacompras.Adapter.ListasSalvasAdapter
@@ -18,6 +17,10 @@ class ListasSalvas : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ListasSalvasAdapter
+    private lateinit var iconHome: ImageView
+    private lateinit var iconListas: ImageView
+    private lateinit var iconCategorias: ImageView
+    private lateinit var iconProdutos: ImageView
     private val listas = ArrayList<Lista>()
 
     private val db = FirebaseFirestore.getInstance()
@@ -26,6 +29,26 @@ class ListasSalvas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listas_salvas)
+        iconHome = findViewById(R.id.iconHome)
+        iconListas = findViewById(R.id.iconListas)
+        iconCategorias = findViewById(R.id.iconCategorias)
+        iconProdutos = findViewById(R.id.iconProdutos)
+
+        iconHome.setOnClickListener {
+            startActivity(Intent(this, TelaHome::class.java))
+        }
+
+        iconListas.setOnClickListener {
+            startActivity(Intent(this, ListasSalvas::class.java))
+        }
+
+        iconCategorias.setOnClickListener {
+            startActivity(Intent(this, CategoriasSalvas::class.java))
+        }
+
+        iconProdutos.setOnClickListener {
+            startActivity(Intent(this, ProdutoSalvos::class.java))
+        }
 
         recyclerView = findViewById(R.id.recyclerListasSalvas)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -46,7 +69,6 @@ class ListasSalvas : AppCompatActivity() {
     }
 
     private fun carregarListas() {
-
         db.collection("listas")
             .orderBy("dataCriacao", Query.Direction.DESCENDING)
             .addSnapshotListener { snap, _ ->

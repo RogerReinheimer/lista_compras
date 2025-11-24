@@ -2,6 +2,7 @@ package com.example.listacompras.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -22,13 +23,37 @@ class ProdutosSelecionar : AppCompatActivity() {
     private val listaItens = mutableListOf<ProdutoListItem>()
     private val selecionadosIds = mutableSetOf<String>()
     private val selecionadosObj = mutableListOf<Produto>()
-
+    private lateinit var iconHome: ImageView
+    private lateinit var iconListas: ImageView
+    private lateinit var iconCategorias: ImageView
+    private lateinit var iconProdutos: ImageView
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(R.layout.activity_produtos_selecionar)
+
+        iconHome = findViewById(R.id.iconHome)
+        iconListas = findViewById(R.id.iconListas)
+        iconCategorias = findViewById(R.id.iconCategorias)
+        iconProdutos = findViewById(R.id.iconProdutos)
+
+        iconHome.setOnClickListener {
+            startActivity(Intent(this, TelaHome::class.java))
+        }
+
+        iconListas.setOnClickListener {
+            startActivity(Intent(this, ListasSalvas::class.java))
+        }
+
+        iconCategorias.setOnClickListener {
+            startActivity(Intent(this, CategoriasSalvas::class.java))
+        }
+
+        iconProdutos.setOnClickListener {
+            startActivity(Intent(this, ProdutoSalvos::class.java))
+        }
 
         recycler = findViewById(R.id.recyclerSelecionarProdutos)
         recycler.layoutManager = LinearLayoutManager(this)

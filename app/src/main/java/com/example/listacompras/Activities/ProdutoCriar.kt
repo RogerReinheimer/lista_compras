@@ -45,11 +45,9 @@ class ProdutoCriar : AppCompatActivity() {
             startActivity(Intent(this, TelaHome::class.java))
         }
 
-        /*
         iconListas.setOnClickListener {
-            startActivity(Intent(this, TelaListas::class.java))
+            startActivity(Intent(this, ListasSalvas::class.java))
         }
-        */
 
         iconCategorias.setOnClickListener {
             startActivity(Intent(this, CategoriasSalvas::class.java))

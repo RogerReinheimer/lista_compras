@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +21,10 @@ class ListaCriar : AppCompatActivity() {
 
     private lateinit var recycler: RecyclerView
     private lateinit var adapter: ProdutosListaAdapter
-
+    private lateinit var iconHome: ImageView
+    private lateinit var iconListas: ImageView
+    private lateinit var iconCategorias: ImageView
+    private lateinit var iconProdutos: ImageView
     private lateinit var edtNomeLista: EditText
     private lateinit var txtTotal: TextView
 
@@ -33,6 +37,27 @@ class ListaCriar : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_criar)
+
+        iconHome = findViewById(R.id.iconHome)
+        iconListas = findViewById(R.id.iconListas)
+        iconCategorias = findViewById(R.id.iconCategorias)
+        iconProdutos = findViewById(R.id.iconProdutos)
+
+        iconHome.setOnClickListener {
+            startActivity(Intent(this, TelaHome::class.java))
+        }
+
+        iconListas.setOnClickListener {
+            startActivity(Intent(this, ListasSalvas::class.java))
+        }
+
+        iconCategorias.setOnClickListener {
+            startActivity(Intent(this, CategoriasSalvas::class.java))
+        }
+
+        iconProdutos.setOnClickListener {
+            startActivity(Intent(this, ProdutoSalvos::class.java))
+        }
 
         edtNomeLista = findViewById(R.id.edtNomeLista)
         txtTotal = findViewById(R.id.txtTotalLista)
