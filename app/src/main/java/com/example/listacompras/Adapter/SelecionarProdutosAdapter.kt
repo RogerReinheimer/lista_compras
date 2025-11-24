@@ -13,10 +13,12 @@ import com.example.listacompras.Model.ProdutoListItem
 import com.example.listacompras.R
 
 class SelecionarProdutosAdapter(
-    private val itens: List<ProdutoListItem>,
-    private val selecionados: MutableSet<String>, // IDs selecionados
+    private val itensOriginais: List<ProdutoListItem>,
+    private val selecionados: MutableSet<String>,
     private val onClick: (Produto, Boolean) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var itensFiltrados = itensOriginais.toMutableList()
 
     companion object {
         private const val TYPE_HEADER = 0
@@ -24,7 +26,7 @@ class SelecionarProdutosAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (itens[position]) {
+        return when (itensFiltrados[position]) {
             is ProdutoListItem.Header -> TYPE_HEADER
             is ProdutoListItem.Item -> TYPE_ITEM
         }
@@ -42,16 +44,48 @@ class SelecionarProdutosAdapter(
         }
     }
 
-    override fun getItemCount() = itens.size
+    override fun getItemCount() = itensFiltrados.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (val item = itens[position]) {
+        when (val item = itensFiltrados[position]) {
             is ProdutoListItem.Header -> (holder as HeaderVH).txt.text = item.categoriaNome
             is ProdutoListItem.Item -> (holder as ItemVH).bind(item.produto)
         }
     }
 
+    fun filtrar(texto: String) {
+        val busca = texto.lowercase().trim()
+
+        if (busca.isEmpty()) {
+            itensFiltrados = itensOriginais.toMutableList()
+        } else {
+            val novaLista = mutableListOf<ProdutoListItem>()
+            var categoriaAtual: String? = null
+
+            itensOriginais.forEach { item ->
+                if (item is ProdutoListItem.Header) {
+                    categoriaAtual = item.categoriaNome
+                } else if (item is ProdutoListItem.Item) {
+                    if (item.produto.nome.lowercase().contains(busca)) {
+
+                        val header = ProdutoListItem.Header(categoriaAtual!!)
+                        if (novaLista.none { it is ProdutoListItem.Header && it.categoriaNome == categoriaAtual }) {
+                            novaLista.add(header)
+                        }
+
+                        novaLista.add(item)
+                    }
+                }
+            }
+
+            itensFiltrados = novaLista
+        }
+
+        notifyDataSetChanged()
+    }
+
     fun getSelecionados(): List<String> = selecionados.toList()
+
 
     inner class HeaderVH(v: View) : RecyclerView.ViewHolder(v) {
         val txt: TextView = v.findViewById(R.id.txtHeaderCategoria)
@@ -77,7 +111,6 @@ class SelecionarProdutosAdapter(
             txtQtd.text = "Quantidade: ${produto.quantidade}"
             txtUnidade.text = "Unidade: ${produto.unidade}"
 
-            // mantém estado
             check.isChecked = selecionados.contains(produto.id)
 
             check.setOnCheckedChangeListener { _, marcado ->

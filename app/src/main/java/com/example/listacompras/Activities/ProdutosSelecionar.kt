@@ -2,6 +2,9 @@ package com.example.listacompras.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.addCallback
@@ -19,14 +22,11 @@ class ProdutosSelecionar : AppCompatActivity() {
 
     private lateinit var recycler: RecyclerView
     private lateinit var adapter: SelecionarProdutosAdapter
+    private lateinit var searchBox: EditText
 
     private val listaItens = mutableListOf<ProdutoListItem>()
     private val selecionadosIds = mutableSetOf<String>()
     private val selecionadosObj = mutableListOf<Produto>()
-    private lateinit var iconHome: ImageView
-    private lateinit var iconListas: ImageView
-    private lateinit var iconCategorias: ImageView
-    private lateinit var iconProdutos: ImageView
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,29 +34,23 @@ class ProdutosSelecionar : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(R.layout.activity_produtos_selecionar)
 
-        iconHome = findViewById(R.id.iconHome)
-        iconListas = findViewById(R.id.iconListas)
-        iconCategorias = findViewById(R.id.iconCategorias)
-        iconProdutos = findViewById(R.id.iconProdutos)
-
-        iconHome.setOnClickListener {
-            startActivity(Intent(this, TelaHome::class.java))
-        }
-
-        iconListas.setOnClickListener {
-            startActivity(Intent(this, ListasSalvas::class.java))
-        }
-
-        iconCategorias.setOnClickListener {
-            startActivity(Intent(this, CategoriasSalvas::class.java))
-        }
-
-        iconProdutos.setOnClickListener {
-            startActivity(Intent(this, ProdutoSalvos::class.java))
-        }
-
         recycler = findViewById(R.id.recyclerSelecionarProdutos)
         recycler.layoutManager = LinearLayoutManager(this)
+
+        searchBox = findViewById(R.id.edtBuscarProdutoSelecao)
+
+        val recebidos = intent.getStringArrayExtra("produtosAtuaisIds")
+        recebidos?.let { selecionadosIds.addAll(it) }
+
+        carregarProdutos()
+
+        searchBox.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                adapter.filtrar(s.toString())
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
 
         val btnCancelar = findViewById<TextView>(R.id.btnCancelar)
         val btnAdicionar = findViewById<TextView>(R.id.btnAdicionar)
@@ -65,14 +59,6 @@ class ProdutosSelecionar : AppCompatActivity() {
         btnAdicionar.setOnClickListener { finishWithResult() }
 
         onBackPressedDispatcher.addCallback(this) { finish() }
-
-        // RECEBE IDs JÁ SELECIONADOS
-        val recebidos = intent.getStringArrayExtra("produtosAtuaisIds")
-        recebidos?.let {
-            selecionadosIds.addAll(it)
-        }
-
-        carregarProdutos()
     }
 
     private fun carregarProdutos() {
@@ -114,21 +100,17 @@ class ProdutosSelecionar : AppCompatActivity() {
 
             listaItens.add(ProdutoListItem.Item(produto))
 
-            // Recria a lista dos objetos selecionados
             if (selecionadosIds.contains(produto.id)) {
                 selecionadosObj.add(produto)
             }
         }
 
         adapter = SelecionarProdutosAdapter(
-            listaItens,
+            listaItens.toList(),
             selecionadosIds
         ) { produto, marcado ->
-
-            if (marcado)
-                selecionadosObj.add(produto)
-            else
-                selecionadosObj.remove(produto)
+            if (marcado) selecionadosObj.add(produto)
+            else selecionadosObj.remove(produto)
         }
 
         recycler.adapter = adapter
