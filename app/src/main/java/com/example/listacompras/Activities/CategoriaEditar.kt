@@ -55,7 +55,6 @@ class CategoriaEditar : AppCompatActivity() {
         edtNome = findViewById(R.id.edtNomeCategoriaEditar)
         btnSalvar = findViewById(R.id.btnSalvarEdicao)
         btnCancelar = findViewById(R.id.btnCancelarEdicao)
-        btnExcluir = findViewById(R.id.btnExcluirCategoria)
 
         // PEGAR DADOS VINDOS DO ADAPTER
         categoriaId = intent.getStringExtra("id")
@@ -76,7 +75,8 @@ class CategoriaEditar : AppCompatActivity() {
             }
 
             if (categoriaId == null) {
-                Toast.makeText(this, "Erro: ID da categoria não recebido!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Erro: ID da categoria não recebido!", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
             }
 
@@ -88,34 +88,9 @@ class CategoriaEditar : AppCompatActivity() {
                     finish()
                 }
                 .addOnFailureListener {
-                    Toast.makeText(this, "Erro ao atualizar: ${it.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Erro ao atualizar: ${it.message}", Toast.LENGTH_SHORT)
+                        .show()
                 }
-        }
-
-        // EXCLUIR
-        btnExcluir.setOnClickListener {
-            if (categoriaId == null) {
-                Toast.makeText(this, "Erro: ID não encontrado!", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            AlertDialog.Builder(this)
-                .setTitle("Excluir categoria")
-                .setMessage("Tem certeza que deseja excluir esta categoria?")
-                .setPositiveButton("Excluir") { _, _ ->
-                    db.collection("categorias")
-                        .document(categoriaId!!)
-                        .delete()
-                        .addOnSuccessListener {
-                            Toast.makeText(this, "Categoria excluída!", Toast.LENGTH_SHORT).show()
-                            finish()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(this, "Erro ao excluir: ${it.message}", Toast.LENGTH_SHORT).show()
-                        }
-                }
-                .setNegativeButton("Cancelar", null)
-                .show()
         }
     }
 }

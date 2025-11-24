@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_above="@id/btnExcluirCategoria"
+        android:layout_above="@id/footer"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         android:layout_marginBottom="8dp">
@@ -77,19 +77,6 @@
             android:textColor="#29353C"
             android:background="@drawable/card_secundario"/>
     </LinearLayout>
-
-    <!-- BOTÃO EXCLUIR -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnExcluirCategoria"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_above="@id/footer"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="16dp"
-        android:text="Excluir categoria"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/card_excluir"/>
 
     <!-- RODAPÉ -->
     <LinearLayout
