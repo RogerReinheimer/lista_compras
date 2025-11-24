@@ -2,6 +2,9 @@ package com.example.listacompras.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -15,13 +18,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class ProdutoSalvos : AppCompatActivity() {
 
-    private lateinit var recycler: RecyclerView
-    private lateinit var adapter: ProdutosAdapter
-    private val listaItens = mutableListOf<ProdutoListItem>()
     private lateinit var iconHome: ImageView
     private lateinit var iconListas: ImageView
     private lateinit var iconCategorias: ImageView
     private lateinit var iconProdutos: ImageView
+    private lateinit var recycler: RecyclerView
+    private lateinit var adapter: ProdutosAdapter
+    private val listaItens = mutableListOf<ProdutoListItem>()
+
+    private lateinit var searchBox: EditText
 
     private val db = FirebaseFirestore.getInstance()
 
@@ -54,10 +59,21 @@ class ProdutoSalvos : AppCompatActivity() {
         recycler = findViewById(R.id.recyclerProdutosSalvos)
         recycler.layoutManager = LinearLayoutManager(this)
 
+        searchBox = findViewById(R.id.edtBuscarProduto)
+
         val btnAdd = findViewById<ImageView>(R.id.btnAdicionarProduto)
         btnAdd.setOnClickListener {
             startActivity(Intent(this, ProdutoCriar::class.java))
         }
+
+        searchBox.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                adapter.filtrar(s.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
 
         carregarProdutos()
     }
@@ -75,7 +91,7 @@ class ProdutoSalvos : AppCompatActivity() {
 
                 val produtos = result.map { doc ->
                     Produto(
-                        id = doc.id, // ⚡ usa o ID do Firestore, não um campo interno
+                        id = doc.id,
                         nome = doc.getString("nome") ?: "",
                         descricao = doc.getString("descricao") ?: "",
                         quantidade = doc.getDouble("quantidade") ?: 0.0,
@@ -104,12 +120,7 @@ class ProdutoSalvos : AppCompatActivity() {
             listaItens.add(ProdutoListItem.Item(produto))
         }
 
-        adapter = ProdutosAdapter(
-            listaItens,
-            this,
-            ""
-        )
-
+        adapter = ProdutosAdapter(listaItens.toList(), this)
         recycler.adapter = adapter
     }
 }

@@ -10,20 +10,25 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listacompras.Activities.ProdutoEditar
-import com.example.listacompras.R
 import com.example.listacompras.Model.ProdutoListItem
+import com.example.listacompras.R
 
 class ProdutosAdapter(
-    private val itens: List<ProdutoListItem>,
-    private val context: Context,
-    private val categoriaId: String
+    private val itensOriginais: List<ProdutoListItem>,
+    private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_HEADER = 0
     private val TYPE_ITEM = 1
 
+    private val itensFiltrados = mutableListOf<ProdutoListItem>()
+
+    init {
+        itensFiltrados.addAll(itensOriginais)
+    }
+
     override fun getItemViewType(position: Int): Int {
-        return when (itens[position]) {
+        return when (itensFiltrados[position]) {
             is ProdutoListItem.Header -> TYPE_HEADER
             is ProdutoListItem.Item -> TYPE_ITEM
         }
@@ -41,10 +46,10 @@ class ProdutosAdapter(
         }
     }
 
-    override fun getItemCount() = itens.size
+    override fun getItemCount() = itensFiltrados.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = itens[position]
+        val item = itensFiltrados[position]
 
         if (holder is HeaderViewHolder && item is ProdutoListItem.Header) {
             holder.txtHeader.text = item.categoriaNome
@@ -60,12 +65,11 @@ class ProdutosAdapter(
             holder.txtQuantidade.text = "Quantidade: ${produto.quantidade}"
             holder.txtUnidade.text = "Unidade: ${produto.unidade}"
 
-            // -------- EDITAR --------
             holder.btnEditar.setOnClickListener {
                 val intent = Intent(context, ProdutoEditar::class.java)
 
-                intent.putExtra("id", produto.id) // ⚡ ID correto do Firestore
-                intent.putExtra("categoriaId", produto.categoriaId) // ⚡ categoria real
+                intent.putExtra("id", produto.id)
+                intent.putExtra("categoriaId", produto.categoriaId)
                 intent.putExtra("categoriaNome", produto.categoriaNome)
 
                 intent.putExtra("nome", produto.nome)
@@ -77,7 +81,6 @@ class ProdutosAdapter(
                 context.startActivity(intent)
             }
 
-            // -------- EXPANDIR / RETRAIR --------
             holder.header.setOnClickListener {
                 if (holder.container.visibility == View.GONE) {
                     holder.container.visibility = View.VISIBLE
@@ -89,6 +92,45 @@ class ProdutosAdapter(
             }
         }
     }
+
+    // ------------------------- FUNÇÃO DE FILTRO ---------------------------- //
+
+    fun filtrar(texto: String) {
+        val termo = texto.lowercase()
+
+        itensFiltrados.clear()
+
+        if (termo.isEmpty()) {
+            itensFiltrados.addAll(itensOriginais)
+        } else {
+            var categoriaAtual = ""
+
+            itensOriginais.forEach { item ->
+                if (item is ProdutoListItem.Header) {
+                    categoriaAtual = item.categoriaNome
+                }
+
+                if (item is ProdutoListItem.Item) {
+                    if (item.produto.nome.lowercase().contains(termo)) {
+
+                        val existeHeader = itensFiltrados.any {
+                            it is ProdutoListItem.Header && it.categoriaNome == categoriaAtual
+                        }
+
+                        if (!existeHeader) {
+                            itensFiltrados.add(ProdutoListItem.Header(categoriaAtual))
+                        }
+
+                        itensFiltrados.add(item)
+                    }
+                }
+            }
+        }
+
+        notifyDataSetChanged()
+    }
+
+    // ----------------------- VIEW HOLDERS ----------------------- //
 
     class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val txtHeader: TextView = itemView.findViewById(R.id.txtHeaderCategoria)
