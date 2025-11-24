@@ -126,13 +126,15 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_above="@id/btnExcluirProduto"
-        android:padding="24dp">
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:layout_marginBottom="8dp">
 
         <!-- SALVAR -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSalvarEdicaoProduto"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:text="Editar"
             android:textColor="#FFFFFF"
@@ -147,7 +149,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCancelarEdicaoProduto"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:text="Cancelar"
             android:textStyle="bold"
@@ -159,7 +161,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnExcluirProduto"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_above="@id/footer"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="16dp"

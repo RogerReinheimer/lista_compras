@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ListaCompras">
         <activity
+            android:name=".Activities.ListaEditar"
+            android:exported="false" />
+        <activity
             android:name=".Activities.ProdutosSelecionar"
             android:exported="false" />
         <activity

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DFEBF6">
+
+    <!-- TÍTULO -->
+    <TextView
+        android:id="@+id/txtTituloEditarLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Lista de Compras"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#29353C"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- SCROLL COM O CONTEÚDO -->
+    <ScrollView
+        android:id="@+id/scrollContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txtTituloEditarLista"
+        android:layout_above="@id/containerBotoesEditar"
+        android:paddingHorizontal="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="24dp">
+
+            <!-- NOME DA LISTA -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome da Lista:"
+                android:textColor="#94A3B8"
+                android:textSize="12sp"
+                android:layout_marginBottom="4dp"/>
+
+            <EditText
+                android:id="@+id/edtNomeLista"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="Ex: Compras do Mês"
+                android:background="@drawable/card_secundario"
+                android:padding="16dp"
+                android:textColor="#29353C"
+                android:textColorHint="#64748B"
+                android:textSize="16sp" />
+
+            <!-- TÍTULO PRODUTOS -->
+            <TextView
+                android:id="@+id/txtProdutosAdicionados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Produtos Adicionados"
+                android:textStyle="bold"
+                android:textColor="#29353C"
+                android:textSize="15sp"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- RECYCLER -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerProdutosLista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="12dp" />
+
+            <!-- ADICIONAR PRODUTO -->
+            <TextView
+                android:id="@+id/btnAddProduto"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="+ Adicionar Produto"
+                android:textStyle="bold"
+                android:textColor="#1D4ED8"
+                android:background="@drawable/card_secundario"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp" />
+
+            <!-- TOTAL -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="12dp"
+                android:background="#E7F5D0"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:id="@+id/txtTotalTitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total da Lista"
+                    android:textColor="#64748B"
+                    android:textSize="14sp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/txtTotalLista"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R$ 0,00"
+                    android:textColor="#16A34A"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- BOTÕES SALVAR E CANCELAR -->
+    <LinearLayout
+        android:id="@+id/containerBotoesEditar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_above="@id/btnExcluirLista"
+        android:paddingHorizontal="24dp"
+        android:layout_marginBottom="8dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSalvarEdicao"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Editar"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:background="@drawable/card_principal"/>
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="0dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancelarEdicao"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Cancelar"
+            android:textStyle="bold"
+            android:textColor="#29353C"
+            android:background="@drawable/card_secundario"/>
+    </LinearLayout>
+
+    <!-- EXCLUIR -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnExcluirLista"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_above="@id/footer"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="8dp"
+        android:text="Excluir lista"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/card_excluir"/>
+
+    <!-- RODAPÉ -->
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp">
+
+        <ImageView
+            android:id="@+id/iconHome"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            app:tint="#94A3B8"/>
+
+        <ImageView
+            android:id="@+id/iconListas"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_lista"
+            app:tint="#29353C"/>
+
+        <ImageView
+            android:id="@+id/iconCategorias"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_pasta"
+            app:tint="#94A3B8"/>
+
+        <ImageView
+            android:id="@+id/iconProdutos"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_caixa"
+            app:tint="#94A3B8"/>
+    </LinearLayout>
+
+</RelativeLayout>

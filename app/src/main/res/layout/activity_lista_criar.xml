@@ -128,31 +128,32 @@
         android:paddingHorizontal="24dp"
         android:layout_above="@id/footer">
 
+        <!-- SALVAR -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSalvarLista"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Salvar"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/card_principal" />
+
+        <Space
+            android:layout_width="16dp"
+            android:layout_height="0dp" />
+
         <!-- CANCELAR -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCancelarLista"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:text="Cancelar"
             android:textStyle="bold"
             android:textColor="#29353C"
             android:background="@drawable/card_secundario" />
 
-        <Space
-            android:layout_width="16dp"
-            android:layout_height="0dp" />
-
-        <!-- SALVAR -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSalvarLista"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="Salvar Lista"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/card_principal" />
     </LinearLayout>
 
     <!-- RODAPÉ -->
