@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Nome do Produto"
-            android:textColor="#29353C"
+            android:textColor="#452829"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -31,7 +31,7 @@
             android:id="@+id/checkSelecionarProduto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="#29353C"
+            android:buttonTint="#452829"
             android:layout_marginEnd="12dp"/>
 
         <!-- EXPANDIR DETALHES -->
@@ -40,7 +40,7 @@
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:src="@drawable/flecha_baixo"
-            app:tint="#64748B"/>
+            app:tint="#452829"/>
     </LinearLayout>
 
     <!-- ÁREA EXPANSÍVEL -->
@@ -57,36 +57,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Descrição: Produto de teste"
-            android:textColor="#64748B"
+            android:textColor="#452829"
             android:textSize="14sp"
             android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/txtPrecoProdutoCard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Preço: R$ 10,00"
-            android:textColor="#64748B"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
 
         <TextView
             android:id="@+id/txtQuantidadeProdutoCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quantidade: 1,0"
-            android:textColor="#64748B"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp" />
+            android:text="Quantidade: 1"
+            android:textColor="#452829"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/txtUnidadeProdutoCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Unidade: UN"
-            android:textColor="#64748B"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp" />
+            android:textColor="#452829"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtPrecoProdutoCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preço: R$ 10,00"
+            android:textColor="#452829"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
 
     </LinearLayout>
 

@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DFEBF6">
+    android:background="#F3E8DF">
 
     <!-- TÍTULO -->
     <TextView
@@ -14,7 +14,7 @@
         android:text="Novo Produto"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="#29353C"
+        android:textColor="#452829"
         android:layout_marginTop="32dp"
         android:layout_centerHorizontal="true" />
 
@@ -36,8 +36,8 @@
             android:hint="Digite o nome do produto"
             android:background="@drawable/card_secundario"
             android:padding="16dp"
-            android:textColor="#29353C"
-            android:textColorHint="#64748B"
+            android:textColor="#452829"
+            android:textColorHint="#452829"
             android:textSize="16sp" />
 
         <EditText
@@ -48,8 +48,8 @@
             android:hint="Digite a descrição do produto"
             android:background="@drawable/card_secundario"
             android:padding="16dp"
-            android:textColor="#29353C"
-            android:textColorHint="#64748B"
+            android:textColor="#452829"
+            android:textColorHint="#452829"
             android:textSize="16sp" />
 
         <!-- QUANTIDADE -->
@@ -62,8 +62,8 @@
             android:inputType="number"
             android:background="@drawable/card_secundario"
             android:padding="16dp"
-            android:textColor="#29353C"
-            android:textColorHint="#64748B"
+            android:textColor="#452829"
+            android:textColorHint="#452829"
             android:textSize="16sp" />
 
         <!-- UNIDADE -->
@@ -86,8 +86,8 @@
             android:inputType="numberDecimal"
             android:background="@drawable/card_secundario"
             android:padding="16dp"
-            android:textColor="#29353C"
-            android:textColorHint="#64748B"
+            android:textColor="#452829"
+            android:textColorHint="#452829"
             android:textSize="16sp" />
 
         <!-- CATEGORIA -->
@@ -145,7 +145,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
+        android:background="@drawable/card_secundario"
         android:elevation="10dp"
         android:gravity="center"
         android:orientation="horizontal"
@@ -157,7 +157,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_home"
-            app:tint="#94A3B8"/>
+            app:tint="#7A5A54"/>
 
         <ImageView
             android:id="@+id/iconListas"
@@ -165,7 +165,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_lista"
-            app:tint="#94A3B8"/>
+            app:tint="#7A5A54"/>
 
         <ImageView
             android:id="@+id/iconCategorias"
@@ -173,7 +173,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_pasta"
-            app:tint="#29353C"/>
+            app:tint="#7A5A54"/>
 
         <ImageView
             android:id="@+id/iconProdutos"
@@ -181,7 +181,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_caixa"
-            app:tint="#94A3B8"/>
+            app:tint="#000000"/>
     </LinearLayout>
 
 </RelativeLayout>

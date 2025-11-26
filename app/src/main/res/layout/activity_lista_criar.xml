@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DFEBF6">
+    android:background="#F3E8DF">
 
     <!-- TÍTULO -->
     <TextView
@@ -14,7 +14,7 @@
         android:text="Nova Lista de Compras"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="#29353C"
+        android:textColor="#452829"
         android:layout_marginTop="32dp"
         android:layout_centerHorizontal="true" />
 
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nome da Lista:"
-                android:textColor="#94A3B8"
+                android:textColor="#57595B"
                 android:textSize="12sp"
                 android:layout_marginBottom="4dp"/>
 
@@ -49,8 +49,8 @@
                 android:hint="Ex: Compras do Mês"
                 android:background="@drawable/card_secundario"
                 android:padding="16dp"
-                android:textColor="#29353C"
-                android:textColorHint="#64748B"
+                android:textColor="#452829"
+                android:textColorHint="#452829"
                 android:textSize="16sp" />
 
             <!-- TÍTULO PRODUTOS ADICIONADOS -->
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:text="Produtos Adicionados"
                 android:textStyle="bold"
-                android:textColor="#29353C"
+                android:textColor="#452829"
                 android:textSize="15sp"
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="12dp" />
@@ -81,7 +81,7 @@
                 android:gravity="center"
                 android:text="+ Adicionar Produto"
                 android:textStyle="bold"
-                android:textColor="#1D4ED8"
+                android:textColor="#452829"
                 android:background="@drawable/card_secundario"
                 android:layout_marginTop="12dp"
                 android:textSize="16sp" />
@@ -92,7 +92,7 @@
                 android:layout_height="60dp"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="12dp"
-                android:background="#E7F5D0"
+                android:background="@drawable/card_secundario"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="100dp">
 
@@ -101,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Total da Lista"
-                    android:textColor="#64748B"
+                    android:textColor="#452829"
                     android:textSize="14sp"
                     android:layout_weight="1" />
 
@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="R$ 0,00"
-                    android:textColor="#16A34A"
+                    android:textColor="#452829"
                     android:textStyle="bold"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -136,7 +136,7 @@
             android:layout_weight="1"
             android:text="Salvar"
             android:textStyle="bold"
-            android:textColor="#FFFFFF"
+            android:textColor="#F3E8DF"
             android:background="@drawable/card_principal" />
 
         <Space
@@ -151,7 +151,7 @@
             android:layout_weight="1"
             android:text="Cancelar"
             android:textStyle="bold"
-            android:textColor="#29353C"
+            android:textColor="#452829"
             android:background="@drawable/card_secundario" />
 
     </LinearLayout>
@@ -162,7 +162,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
+        android:background="@drawable/card_secundario"
         android:elevation="10dp"
         android:gravity="center"
         android:orientation="horizontal"
@@ -174,7 +174,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_home"
-            app:tint="#94A3B8"/>
+            app:tint="#7A5A54"/>
 
         <ImageView
             android:id="@+id/iconListas"
@@ -182,7 +182,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_lista"
-            app:tint="#29353C"/>
+            app:tint="#000000"/>
 
         <ImageView
             android:id="@+id/iconCategorias"
@@ -190,7 +190,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_pasta"
-            app:tint="#94A3B8"/>
+            app:tint="#7A5A54"/>
 
         <ImageView
             android:id="@+id/iconProdutos"
@@ -198,7 +198,7 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:src="@drawable/ic_caixa"
-            app:tint="#94A3B8"/>
+            app:tint="#7A5A54"/>
     </LinearLayout>
 
 </RelativeLayout>

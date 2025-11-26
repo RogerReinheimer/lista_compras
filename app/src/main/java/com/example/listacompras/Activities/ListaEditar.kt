@@ -106,7 +106,7 @@ class ListaEditar : AppCompatActivity() {
                         Produto(
                             id = doc.id,
                             nome = doc.getString("nome") ?: "",
-                            descricao = "",
+                            descricao = doc.getString("descricao") ?: "",
                             quantidade = doc.getDouble("quantidade") ?: 0.0,
                             unidade = doc.getString("unidade") ?: "",
                             preco = doc.getDouble("preco") ?: 0.0,

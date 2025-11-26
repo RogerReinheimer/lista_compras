@@ -28,9 +28,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nome da Lista"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#29353C" />
+                android:textColor="#452829" />
 
             <TextView
                 android:id="@+id/txtDataListaCard"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="Criada em: 01/02/2025"
                 android:textSize="14sp"
-                android:textColor="#64748B"
+                android:textColor="#452829"
                 android:layout_marginTop="4dp" />
 
             <TextView
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="Total: R$ 0,00"
                 android:textSize="14sp"
-                android:textColor="#64748B"
+                android:textColor="#452829"
                 android:layout_marginTop="4dp" />
 
             <TextView
@@ -55,8 +55,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Carrinho: R$ 0,00"
-                android:textSize="14sp"
-                android:textColor="#22A200"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
@@ -66,7 +67,7 @@
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:src="@drawable/ic_editar"
-            app:tint="#64748B"
+            app:tint="#452829"
             android:layout_marginEnd="14dp" />
 
         <!-- Botão expandir -->
@@ -75,7 +76,7 @@
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:src="@drawable/flecha_baixo"
-            app:tint="#64748B" />
+            app:tint="#452829" />
     </LinearLayout>
 
     <!-- ÁREA EXPANDIDA -->
