@@ -38,6 +38,7 @@ class ProdutosListaAdapter(
     override fun getItemCount() = produtos.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        // importante pegar produto por posição no momento do bind
         val p = produtos[position]
 
         holder.nome.text = p.nome
@@ -47,7 +48,7 @@ class ProdutosListaAdapter(
         holder.txtQuantidade.text = "Quantidade: ${p.quantidade}"
         holder.txtUnidade.text = "Unidade: ${p.unidade}"
 
-        // EXPANDIR / COLAPSAR
+        // EXPANDIR / COLAPSAR (mantém estado visual independente)
         holder.btnExpandir.setOnClickListener {
             if (holder.container.visibility == View.GONE) {
                 holder.container.visibility = View.VISIBLE
@@ -58,14 +59,10 @@ class ProdutosListaAdapter(
             }
         }
 
-        // REMOVER PRODUTO
+        // REMOVER → delega a remoção para a Activity via callback.
+        // A Activity fará a remoção no dataset e notificará o adapter.
         holder.btnRemover.setOnClickListener {
-            val removido = produtos[position]
-            produtos.removeAt(position)
-            notifyItemRemoved(position)
-            onRemover(removido)
-            onAtualizarTotal()
+            onRemover(p)
         }
     }
 }
-

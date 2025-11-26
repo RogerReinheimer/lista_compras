@@ -75,8 +75,20 @@ class ListaEditar : AppCompatActivity() {
         adapter = ProdutosListaAdapter(
             produtos,
             onRemover = { produtoRemovido ->
-                removerProdutoDoBanco(produtoRemovido.id)
-                atualizarTotal()
+                // REMOÇÃO segura por ID (activity controla dataset)
+                val index = produtos.indexOfFirst { it.id == produtoRemovido.id }
+                if (index >= 0) {
+                    produtos.removeAt(index)
+                    adapter.notifyItemRemoved(index)
+                    removerProdutoDoBanco(produtoRemovido.id)
+                    atualizarTotal()
+                } else {
+                    // caso não encontre, recarrega tudo (fallback seguro)
+                    produtos.removeAll { it.id == produtoRemovido.id }
+                    adapter.notifyDataSetChanged()
+                    removerProdutoDoBanco(produtoRemovido.id)
+                    atualizarTotal()
+                }
             },
             onAtualizarTotal = { atualizarTotal() }
         )
@@ -106,12 +118,12 @@ class ListaEditar : AppCompatActivity() {
                         Produto(
                             id = doc.id,
                             nome = doc.getString("nome") ?: "",
-                            descricao = doc.getString("descricao") ?: "",
+                            descricao = doc.getString("descricao") ?: "", // <<--- CORREÇÃO AQUI
                             quantidade = doc.getDouble("quantidade") ?: 0.0,
                             unidade = doc.getString("unidade") ?: "",
                             preco = doc.getDouble("preco") ?: 0.0,
-                            categoriaId = "",
-                            categoriaNome = "",
+                            categoriaId = doc.getString("categoriaId") ?: "",
+                            categoriaNome = doc.getString("categoriaNome") ?: "",
                             selecionado = doc.getBoolean("selecionado") ?: false
                         )
                     )
@@ -131,8 +143,8 @@ class ListaEditar : AppCompatActivity() {
     }
 
     private fun atualizarTotal() {
-        val total = produtos.sumOf { it.preco * it.quantidade }
-        binding.txtTotalLista.text = "R$ %.2f".format(total)
+        val total = produtos.sumOf { it.preco }
+        binding.txtTotalLista.text = "R$ ".format(total)
 
         // Salvar total atualizado no banco
         db.collection("listas")
@@ -146,10 +158,9 @@ class ListaEditar : AppCompatActivity() {
         binding.btnAddProduto.setOnClickListener {
             val intent = Intent(this, ProdutosSelecionar::class.java)
 
-            intent.putExtra(
-                "produtosAtuaisIds",
-                produtos.map { it.id }.toTypedArray()
-            )
+            // envia os IDs atuais como ArrayList para o selecionador (se precisar)
+            val idsAtuais = ArrayList(produtos.map { it.id })
+            intent.putStringArrayListExtra("produtosAtuaisIds", idsAtuais)
 
             startActivityForResult(intent, REQUEST_SELECT)
         }
@@ -158,7 +169,7 @@ class ListaEditar : AppCompatActivity() {
         binding.btnSalvarEdicao.setOnClickListener {
 
             val nome = binding.edtNomeLista.text.toString().trim()
-            val total = produtos.sumOf { it.preco * it.quantidade }
+            val total = produtos.sumOf { it.preco }
 
             // Atualiza dados principais da lista
             val listaRef = db.collection("listas").document(listaId)
@@ -226,9 +237,32 @@ class ListaEditar : AppCompatActivity() {
                 data?.getParcelableArrayExtra("produtosSelecionados")
                     ?.map { it as Produto } ?: emptyList()
 
-            // substitui tudo pelos novos
+            // MERGE seguro: atualiza os existentes e adiciona apenas os novos (evita duplicação)
+            val mapaExistente = produtos.associateBy { it.id }.toMutableMap()
+
+            for (p in selecionados) {
+                val existente = mapaExistente[p.id]
+                if (existente != null) {
+                    // atualiza campos do existente
+                    existente.nome = p.nome
+                    existente.descricao = p.descricao
+                    existente.preco = p.preco
+                    existente.quantidade = p.quantidade
+                    existente.unidade = p.unidade
+                    existente.categoriaId = p.categoriaId
+                    existente.categoriaNome = p.categoriaNome
+                    existente.selecionado = p.selecionado
+                } else {
+                    // novo produto → adiciona ao mapa
+                    mapaExistente[p.id] = p
+                }
+            }
+
+            // substituir lista mantendo ordem: primeiro itens antigos (atualizados) + novos
+            val novaLista = mapaExistente.values.toMutableList()
+
             produtos.clear()
-            produtos.addAll(selecionados)
+            produtos.addAll(novaLista)
 
             adapter.notifyDataSetChanged()
             atualizarTotal()
