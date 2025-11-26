@@ -22,7 +22,6 @@ class CategoriaEditar : AppCompatActivity() {
     private lateinit var edtNome: EditText
     private lateinit var btnSalvar: AppCompatButton
     private lateinit var btnCancelar: AppCompatButton
-    private lateinit var btnExcluir: AppCompatButton
 
     private var categoriaId: String? = null
 

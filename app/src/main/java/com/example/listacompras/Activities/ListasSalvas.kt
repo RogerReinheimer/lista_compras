@@ -59,11 +59,7 @@ class ListasSalvas : AppCompatActivity() {
         // CALLBACK ABRIR + EDITAR
         adapter = ListasSalvasAdapter(
             listas,
-            onClick = { listaSelecionada ->
-                val intent = Intent(this, ListaCriar::class.java)
-                intent.putExtra("listaId", listaSelecionada.id)
-                startActivity(intent)
-            },
+            onClick = { /* não faz nada */ },
             onEditarClick = { listaId ->
                 val intent = Intent(this, ListaEditar::class.java)
                 intent.putExtra("listaId", listaId)

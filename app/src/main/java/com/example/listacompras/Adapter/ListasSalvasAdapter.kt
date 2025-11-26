@@ -63,7 +63,13 @@ class ListasSalvasAdapter(
         holder.recyclerProdutos.layoutManager =
             LinearLayoutManager(holder.itemView.context)
 
-        holder.itemView.setOnClickListener { onClick(lista) }
+        holder.itemView.setOnClickListener {
+            val novoEstado = !(estados[lista.id] ?: false)
+            estados[lista.id] = novoEstado
+            notifyItemChanged(position)
+
+            if (novoEstado) carregarProdutos(lista.id, holder)
+        }
         holder.btnEditar.setOnClickListener { onEditarClick(lista.id) }
 
         holder.btnExpandir.setOnClickListener {
